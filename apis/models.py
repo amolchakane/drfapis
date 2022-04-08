@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
+from django.conf import settings
 
 
 class UserProfileManager(BaseUserManager):
@@ -57,3 +58,19 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         """Return string representation of user"""
         return self.email
+
+
+class Content(models.Model):
+    """Content created by user"""
+    user_profile = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=30)
+    body = models.CharField(max_length=300)
+    summary = models.CharField(max_length=60)
+    document = models.URLField()
+    categories = models.TextField(blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        """Return string representation of content"""
+        return self.title
+

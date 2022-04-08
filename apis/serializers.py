@@ -38,3 +38,18 @@ class UserProfileSerializer(serializers.ModelSerializer):
             instance.set_password(password)
 
         return super().update(instance, validated_data)
+
+
+# We will be creating serializer for Content model
+class ContentSerializer(serializers.ModelSerializer):
+    """Serializes content object"""
+
+    class Meta:
+        model = models.Content
+        fields = ('id', 'user_profile', 'title', 'body', 'summary', 'document', 'categories', 'created_on')
+        # User profile can only be read only
+        extra_kwargs = {
+            'user_profile': {
+                'read_only': True
+            }
+        }
