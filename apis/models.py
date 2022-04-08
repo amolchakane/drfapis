@@ -7,28 +7,29 @@ from django.contrib.auth.models import BaseUserManager
 class UserProfileManager(BaseUserManager):
     """Manager for user profiles"""
 
-    def create_user(self, email, name, password=None):
+    def create_user(self, email, name, phone, pincode, password=None):
         """Create a new user profile"""
         if not email:
             raise ValueError('Users must have an email address')
 
         email = self.normalize_email(email)
-        user = self.model(email=email, name=name)
+        user = self.model(email=email, name=name, phone=phone, pincode=pincode)
 
         user.set_password(password)
         user.save(using=self._db)
 
         return user
 
-    def create_superuser(self, email, name, password):
+    def create_superuser(self, email, name, phone, pincode,  password):
         """Create and save a new superuser with given details"""
-        user = self.create_user(email, name, password)
+        user = self.create_user(email, name, phone, pincode, password)
 
         user.is_superuser = True
         user.is_staff = True
 
         user.save()
         return user
+
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Database model for users in the system"""
@@ -41,7 +42,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     country = models.CharField(max_length=255)
-    pincode = models.IntegerField(max_length=6)
+    pincode = models.CharField(max_length=6)
 
     objects = UserProfileManager()
 
