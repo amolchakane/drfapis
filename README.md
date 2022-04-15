@@ -1,4 +1,4 @@
-# drfapis
+# APIs using Django Rest Framework
 
 **Usage**
 
@@ -31,3 +31,8 @@
     * POST
     * PUT
     * DELETE 
+
+
+# Postman Collection
+
+https://www.getpostman.com/collections/4db47b6d7e50bde5ba40
