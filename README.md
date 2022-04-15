@@ -2,17 +2,12 @@
 
 **Usage**
 
-First set up the virtual environment and activate it.
-
-Then execute following commands in virtual environment.
-
-pip install -r requirements.txt
-
-python manage,py makemigrations
-
-python manage.py migrate
-
-python manage.py runserver
+1. First set up the virtual environment and activate it.
+2. Then execute following commands in virtual environment.
+   1. `pip install -r requirements.txt`
+   2. `python manage,py makemigrations`
+   3. `python manage.py migrate`
+   4. `python manage.py runserver`
 
 
 
