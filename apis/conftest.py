@@ -4,6 +4,7 @@ from mixer.backend.django import mixer
 from rest_framework.test import APIClient
 
 
+
 @pytest.fixture
 def factory():
     """Return RequestFactory object"""
@@ -23,6 +24,3 @@ def api_client():
     return APIClient
 
 
-@pytest.fixture
-def auth_token():
-    return '8f811308cb1452c0a47c095becfe5a7fc75a248a'
